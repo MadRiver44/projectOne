@@ -9,24 +9,24 @@
   border: 2px solid red;
   border-radius: 5px;
   margin: 0 auto;
-  padding: 5px;
+  text-align: center;
 
 }
 
 .parent {
   position: relative;
+  display: inline-block;
   height: 185px;
   width: 185px;
   border: 2px solid blue;
-  float: left;
-  margin-left: 5px;
-  margin-top: 5px;
+  margin-left: 3px;
+  margin-top: 7px;
+
 
 }
 
 .square {
   position: relative;
-
   margin: 5px auto;
   height: 170px;
   width: 170px;
