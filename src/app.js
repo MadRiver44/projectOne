@@ -18,25 +18,23 @@ in a particular order, console.log('WIN'); */
 let winningArrayPattern = [];//['0', '1', '2', null]; //parent id's in order, immutable
 let currentArrayPattern = [];
 const classSquares = document.querySelectorAll('.square'); // children in a NodeList
-const idParents = document.querySelectorAll('.parent'); //NodeList
-let childrenArray = [];
+
 let mixedArray = []
 
 // creates X number of parents and adds id's and classes and special class empty
 function createAmtOfParents(num) {
+  let arrayOfParentsNoKids = [];
     for(let i = 0; i < num; i += 1) {
       let parent = document.createElement('div');
       parent.setAttribute('class', 'parent');
       parent.setAttribute('id', i);
-      //console.log(parent);
-      winningArrayPattern[i] = parent;
+      arrayOfParentsNoKids[i] = parent;
       if(i === num-1){
         parent.classList.add('class', 'empty');
 
       }
     }
-    //console.log(winningArrayPattern);
-    return winningArrayPattern;
+    return arrayOfParentsNoKids;
 }
 let parents = createAmtOfParents;
 let parentsArr = parents(4);
@@ -44,6 +42,7 @@ let parentsArr = parents(4);
 
 // create children, 1 less than number of parents
 function createAmtOfChildren(num) {
+  let childrenArray = [];
   for(let i = 0; i < num-1; i += 1) {
     let child = document.createElement('div');
     child.setAttribute('class', 'square');
@@ -58,25 +57,59 @@ let kidsArray = kids(4);
 
 
 
-//append children to Parents ``` this is the place to add them randomly
+//append children to Parents
 // if they get a child they also get the class full else empty
-function familyGathering(kids, parents){
+function familyGathering(kids, par){
   let match = shuffle(kids); // shuffled child Array to append to parents
   let board = document.getElementById('board');
-  for( let i = 0; i < parents.length; i += 1){
+  for( let i = 0; i < par.length; i += 1){
     if( i !== 3){
-      parents[i].append(match[i]);
-      parents[i].classList.add('class', 'full');
-      board.append(parents[i]);
+      par[i].append(kids[i]);
+      par[i].classList.add('class', 'full');
+      board.append(par[i]);
     }else {
-      board.append(parents[i]);
+      board.append(par[i]);
     }
   }
-  return parents;
+  return par;
 }
 familyGathering(kidsArray, parentsArr);
 
 
+// get innerHtml of children in order/ befor shuffle, set that winningArrayPattern
+// same as familyGathering except kids aren't shuffled and no board append
+function setWinArrPattern(parentKidArray) {
+  let tempArr =[];
+  parentKidArray.forEach(function(item,index){
+  if (item.children.length === 1){
+    winningArrayPattern[index] = item.children[0].innerHTML;
+  } else {
+    winningArrayPattern[index] = null;
+  }
+ }); // for each
+  winningArrayPattern.sort(function(a, b){
+      return b < a;
+  }); // sort, now remove null and add to end
+  for (let i = 0; i < winningArrayPattern.length; i += 1) {
+    if (winningArrayPattern[i] !== null){
+      tempArr.push(winningArrayPattern[i]);
+      winningArrayPattern[i] = tempArr[i];
+    }
+  } // add null
+  if (tempArr.length < winningArrayPattern.length){
+    tempArr.push(null);
+   }
+   // reset winningArrayPattern
+   for (let i = 0;  i < tempArr.length; i += 1) {
+    winningArrayPattern[i] = tempArr[i];
+   }
+
+
+
+  console.log(winningArrayPattern, tempArr);
+  return winningArrayPattern;
+}// function
+setWinArrPattern(parentsArr);
 
 
 
@@ -84,23 +117,15 @@ familyGathering(kidsArray, parentsArr);
 
 
 
-//get children
-function getChildren() {
-  idParents.forEach(function(item,index) {
-      childrenArray.push(item.children[0]);
-    }); // forEach
-    //console.log(childrenArray);
-    return childrenArray;
-  } // function mix
 
-let arraytoBeShuffled = getChildren;
+
+
 
 
 
 //shuffle chidren to render upon start
 // stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
-  //let array = arraytoBeShuffled();
   var currentIndex = array.length, temporaryValue, randomIndex;
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
@@ -114,20 +139,6 @@ function shuffle(array) {
   }
   return array;
 }
-
-
-
-// use shuffledArray to append randomized children to parents
-function childToParent(){
-  let collection = shuffle();
-  for( let i = 0; i < collection.length; i += 1){
-    if (collection[i] !== undefined){
-      parent.append(collection[i]); // appends only cldren up to parents.length -1
-    }
-  }
-}
-
-
 
 
 // equals function to comapre array possitions
@@ -145,8 +156,10 @@ function equals(array1, array2) {
   return true;
 }
 
+
 // winning condition logic
 function checkWin () {
+  let idParents = document.querySelectorAll('.parent'); //NodeList
   idParents.forEach(function(item,index){
   if (item.children.length === 1){
     console.log(item.children[0].innerHTML, index);
@@ -174,22 +187,5 @@ function createWinDiv() {
 
 
 
-/*let generatedArray = [];
 
-let board = function(input) { // takes input from propmt
-  for (let i = 0; i < size; i += 1) {
-    if (i === size - 1){
-      generatedArray.push(null);
-    }else{
-      let stringVal = i.toString();
-      generatedArray.push(stringVal);
-    }
-  }
-  return generatedArray;
-};*/
-
-//let winningArrayPattern = board(input);
-//winningArrayPattern;
-
-//shuffle(winningArrayPattern);
 
