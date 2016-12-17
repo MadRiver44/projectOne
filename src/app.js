@@ -64,8 +64,13 @@ function familyGathering(kids, parents){
   let match = shuffle(kids); // shuffled child Array to append to parents
   let board = document.getElementById('board');
   for( let i = 0; i < parents.length; i += 1){
+    if( i !== 3){
       parents[i].append(match[i]);
+      parents[i].classList.add('class', 'full');
       board.append(parents[i]);
+    }else {
+      board.append(parents[i]);
+    }
   }
   return parents;
 }
