@@ -28,7 +28,7 @@ function createAmtOfParents(num) {
       let parent = document.createElement('div');
       parent.setAttribute('class', 'parent');
       parent.setAttribute('id', i);
-      console.log(parent);
+      //console.log(parent);
       winningArrayPattern[i] = parent;
       if(i === num-1){
         parent.classList.add('class', 'empty');
@@ -38,7 +38,8 @@ function createAmtOfParents(num) {
     //console.log(winningArrayPattern);
     return winningArrayPattern;
 }
-createAmtOfParents(4);
+let parents = createAmtOfParents;
+let parentsArr = parents(4);
 
 
 // create children, 1 less than number of parents
@@ -46,27 +47,29 @@ function createAmtOfChildren(num) {
   for(let i = 0; i < num-1; i += 1) {
     let child = document.createElement('div');
     child.setAttribute('class', 'square');
-    child.innerHTML = i;
+    child.innerHTML = i.toString();
     childrenArray.push(child);
     //console.log(child);
   }
   return childrenArray;
 }
-createAmtOfChildren(4);
+let kids = createAmtOfChildren;
+let kidsArray = kids(4);
+
 
 
 //append children to Parents ``` this is the place to add them randomly
 // if they get a child they also get the class full else empty
-function familyGathering(){
-  let match = shuffle(); //
-  for( let i = 0; i < match.lengh; i += 1){
-    if (match[i] !== undefined) {
-
-
-    }
+function familyGathering(kids, parents){
+  let match = shuffle(kids); // shuffled child Array to append to parents
+  let board = document.getElementById('board');
+  for( let i = 0; i < parents.length; i += 1){
+      parents[i].append(match[i]);
+      board.append(parents[i]);
   }
-
+  return parents;
 }
+familyGathering(kidsArray, parentsArr);
 
 
 
@@ -91,8 +94,8 @@ let arraytoBeShuffled = getChildren;
 
 //shuffle chidren to render upon start
 // stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-let shuffle = function() {
-  let array = arraytoBeShuffled();
+function shuffle(array) {
+  //let array = arraytoBeShuffled();
   var currentIndex = array.length, temporaryValue, randomIndex;
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
