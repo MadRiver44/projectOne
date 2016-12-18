@@ -2,9 +2,10 @@ console.log("tile.js is loaded!");
 class Tile {
   constructor(number) {
     this.number = number;
+
   } // constructor
   // creates X number of parents and adds id's and classes and special class empty
-  createAmtOfParents() {
+  createAmtOfParents(number) {
     const arrayOfParentsNoKids = [];
     for (let i = 0; i < this.number; i += 1) {
       const parent = document.createElement('div');
@@ -31,21 +32,20 @@ class Tile {
 
 // shuffle chidren to render upon start
 // stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-  static shuffle(array) {
-    const arr1 = array;
-    let currentIndex = arr1.length;
+  shuffle(array) {
+    let currentIndex = array.length; // arr1.length;
     let temporaryValue;
     let randomIndex;
     while (currentIndex !== 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);  // TILE
       currentIndex -= 1;
-      temporaryValue = arr1[currentIndex];
-      arr1[currentIndex] = arr1[randomIndex];
-      arr1[randomIndex] = temporaryValue;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
     }
     return array;
   }
-  static familyGathering(kidsGroup, parentsGroup) {
+  familyGathering(kidsGroup, parentsGroup) {
     this.shuffle(kidsGroup); // shuffled child Array to append to parents
     const board = document.getElementById('board');
     for (let i = 0; i < parentsGroup.length; i += 1) {
