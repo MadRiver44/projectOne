@@ -70,9 +70,9 @@ class Game {
         currentArrayPattern[index] = null;
       }
       return currentArrayPattern;
-      //console.log('THIS IS curr',currentArrayPattern, 'This is winArr',winArr);
+      console.log('THIS IS curr',currentArrayPattern, 'This is winArr',winArr);
     }); // forEach
-      console.log('This is winArr',winArr);
+
       if (currentArrayPattern.length !== winArr.length) {
         return false;
       }
@@ -80,9 +80,9 @@ class Game {
         if (currentArrayPattern[i] !== winArr[i]) {
           return false;
         }
+      }
       this.createWinDiv();
       return true;
-    }
     //equals(currentArrayPattern, arr /*winningArrayPattern*/);
    }// function
 
