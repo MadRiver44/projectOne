@@ -1,4 +1,3 @@
-console.log("tile.js is loaded!");
 class Tile {
   constructor(number) {
     this.number = number;
@@ -21,7 +20,7 @@ class Tile {
   // create children, 1 less than number of parents
   createAmtOfChildren(number) {
     const childrenArray = [];
-    for (let i = 0; i < this.number - 1; i += 1) {
+    for (let i = 0; i < this.number - 1 ; i += 1) {
       const child = document.createElement('div');
       child.setAttribute('class', 'square');
       child.innerHTML = i.toString();
@@ -45,6 +44,7 @@ class Tile {
     }
     return array;
   }
+
   familyGathering(kidsGroup, parentsGroup) {
     this.shuffle(kidsGroup); // shuffled child Array to append to parents
     const board = document.getElementById('board');

@@ -3,7 +3,6 @@
 /* stackoverflow question answered */
 $('document').ready(function () {
   $('.square').click(function () {
-
     const parent = $(this).parent('div');
     $(this).appendTo('.empty');
     $('.empty').addClass('full').removeClass('empty');

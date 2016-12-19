@@ -1,4 +1,4 @@
-console.log("game.js is loaded!");
+
 class Game {
   constructor(parentChildArray) {
     this .parentChildArray = parentChildArray;
@@ -31,7 +31,6 @@ class Game {
     for (let i = 0; i < tempArr.length; i += 1) {
       winningArrayPattern[i] = tempArr[i];
     }
-    console.log(winningArrayPattern);
     return winningArrayPattern;
   } // function
 
@@ -46,7 +45,7 @@ class Game {
 
   // equals function to compare array possitions
   // http://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
-/*  equals(array1, array2) {
+  equals(array1, array2) {
     if (array1.length !== array2.length) {
       return false;
     }
@@ -57,10 +56,10 @@ class Game {
     }
     this.createWinDiv();
     return true;
-  }*/
+  }
 
   checkWin(arr) {
-    let winArr = arr;
+    const winArr = arr;
     const currentArrayPattern = [];
     const idParents = document.querySelectorAll('.parent'); // NodeList
     idParents.forEach(function idparents(item, index) {
@@ -70,20 +69,8 @@ class Game {
         currentArrayPattern[index] = null;
       }
       return currentArrayPattern;
-      console.log('THIS IS curr',currentArrayPattern, 'This is winArr',winArr);
     }); // forEach
-
-      if (currentArrayPattern.length !== winArr.length) {
-        return false;
-      }
-      for (let i = 0; i < winArr.length; i += 1) { // GAME
-        if (currentArrayPattern[i] !== winArr[i]) {
-          return false;
-        }
-      }
-      this.createWinDiv();
-      return true;
-    //equals(currentArrayPattern, arr /*winningArrayPattern*/);
-   }// function
+    this.equals(currentArrayPattern, winArr);
+  }// function
 
 } // class
