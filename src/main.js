@@ -1,7 +1,7 @@
 
 /* stackoverflow question answered */
 
-const tile = new Tile(9);
+const tile = new Tile(4);
 const parArr = tile.createAmtOfParents();
 const kidArr = tile.createAmtOfChildren();
 tile.shuffle(kidArr, parArr);
