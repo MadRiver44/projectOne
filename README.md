@@ -1,5 +1,7 @@
 # projectOne - Tile Madness
 
+![ScreenShot](https://cloud.githubusercontent.com/assets/7386478/21299109/6f7c0b54-c566-11e6-8b1b-a63e6ccf968a.png)
+
 #### Description
 
 The  goal is to rearraange the tiles in numerically ascending order from lowest to highest, from top left to bottom right
@@ -29,7 +31,7 @@ This project was an A-Z exercise in creating a fully functional, ES6 class based
 
 #### Unsolved Problems
 
-I designed the game in such a manner to build a small MVP and once functional, simply refactor the CSS to accomodate any number of tiles to scale the game. Knowing that some things take me along time, I strived for scalability last, and ran out of time. 
+I designed the game in such a manner to build a small MVP and once functional, simply refactor the CSS to accomodate any number of tiles to scale the game. Knowing that some things take me a long time, I strived for scalability last, and ran out of time. 
 
 The issue is a bug in the setWinArrPattern() function. When I create larger instances, the game starts "missing" random numbers. This is seen here
 
