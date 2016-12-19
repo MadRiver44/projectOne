@@ -1,5 +1,7 @@
 /* eslint-env jquery */
 
+// TILE MADNESS, FUNCTION SYTLE
+
 /* stackoverflow question answered */
 $('document').ready(function () {
   $('.square').click(function () {

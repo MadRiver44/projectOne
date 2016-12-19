@@ -14,6 +14,7 @@ class Game {
         winningArrayPattern.push(item.children[0].innerHTML);
       } else {
         winningArrayPattern[index] = null;
+        console.log(' winningArrayPattern pre-sort', winningArrayPattern)
       }
     }); // forEach
     winningArrayPattern.sort(function winpattern(a, b) {
@@ -24,13 +25,17 @@ class Game {
         tempArr.push(winningArrayPattern[i]);
         winningArrayPattern[i] = tempArr[i];
       }
+
     } // for, now add null
+    console.log(' winningArrayPattern post-sort', winningArrayPattern)
     if (tempArr.length < winningArrayPattern.length) {
       tempArr.push(null);
     } // NOW RESET WINNINGARRAYPATTERN
+    console.log(' tempArr pre for-loop', tempArr)
     for (let i = 0; i < tempArr.length; i += 1) {
       winningArrayPattern[i] = tempArr[i];
     }
+    console.log(' winningArrayPattern post for-loop', winningArrayPattern)
     return winningArrayPattern;
   } // function
 
